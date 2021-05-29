@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    max-width: 800px;
+    border: 1px solid rgb(80, 80, 80);
+    border-radius: 10px;
+    color: black;
+}
+.input{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+}
+.button{
+    width: 200px;
+}
