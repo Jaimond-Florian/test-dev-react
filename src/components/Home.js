@@ -1,17 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
 import { TextField } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Weather from './Weather';
+import axios from 'axios'
+
+
+
 
 export default function Home() {
+    const [query, setQuery] = useState('')
+    const [weather, setWeather] = useState({})
+    
+    const ApiKey = '98b7465353d383f3d0f3bc4a284a48ae'
+    const ApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${ApiKey}`
+    
+    const getWeather = (event) => {
+            if (event.key === "Enter") {
+                 axios.get(ApiUrl)
+                      
+                      .then(result => {
+                       setWeather(result);
+                       setQuery('');
+                       console.log(result);
+                })
+            }
+    }
     return (
+        <>
         <div className='container'>
             <h3>What's the weather in your town ??</h3>
                 <div className="input">
-                    <TextField id="outlined-basic" label="Town" variant="outlined" />
-                    <Button className="button" variant="outlined" color="primary" href={Weather}>Submit</Button>
+                    <TextField
+                        id="outlined-basic"
+                        label="city"
+                        variant="outlined" 
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyPress={getWeather} 
+                    />
                 </div>
+                <h3>{weather.name}</h3>
+
+
         </div>
+        
+            
+        </>
     )
 }
