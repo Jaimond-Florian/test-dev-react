@@ -10,8 +10,8 @@ export default function Home() {
     const [query, setQuery] = useState('')
     const [weather, setWeather] = useState({})
     
-    const ApiKey = '98b7465353d383f3d0f3bc4a284a48ae'
-    const ApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${ApiKey}`
+    const ApiKey = 
+    const ApiUrl = 
     
     const getWeather = (event) => {
             if (event.key === "Enter") {
