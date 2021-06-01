@@ -14,7 +14,7 @@ Le but est de faire une mini app en react, de deux pages. L'app doit être un si
 **Ressources :** 
 
 - L'API à utiliser pour connaître la température sera [https://openweathermap.org/](https://openweathermap.org/).
-- La clé d'API est : 98b7465353d383f3d0f3bc4a284a48ae
+- La clé d'API est : 
 
 **Contraintes :** 
 
