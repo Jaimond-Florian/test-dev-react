@@ -2,27 +2,43 @@
    
     display: flex;
     flex-direction: column;
-    min-height: 80vh;
-    width: 70vw;
+    align-items:center;
+    min-height: 50vh;
+    width: 45vw;
     padding: 10px;
-    max-width: 800px;
+    max-width: 600px;
     border: 1px solid rgb(80, 80, 80);
     border-radius: 10px;
     color: black;
 }
-.input{
+.inputs{
     display: flex;
     flex-direction: column;
-    
-    width:200px;
-    margin-bottom: 30px;
+    width: 200px;
+    margin-bottom: 10px;
+    height: 160px;
 }
 .button{
+    margin-top: 20px;
     width: 200px;
-    margin: 30px;
+    height: 57px;
+    
+    
 }
 .weather{
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+}
+.warm{
+    border-radius: 10px;
+    background-image: url('../warm.jpg') ;
+    
+    
+}
+.cold{
+    background-image: url('../cold.jpg');
+    border-radius: 10px;
+    
 }

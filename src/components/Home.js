@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Link } from 'react'
 import './Home.css'
 import { TextField } from '@material-ui/core';
 import { Button } from '@material-ui/core';
@@ -10,13 +10,14 @@ require('dotenv').config()
 
 
 
-export default function Home(props) {
-    // props à passer weather[0].main main.temp name pour l'afficher sur la 2eme page
+
+export default function Home() {
+    
     
     const [query, setQuery] = useState('')
-    const [currentWeather, setCurrentWeather] = useState({})
+    const [currentWeather, setCurrentWeather] = useState(null)
     
-    const [showData, setShowData] = useState(null)
+    
     //const ApiKey = process.env
     //const ApiUrl = process.env
     const ApiKey = '98b7465353d383f3d0f3bc4a284a48ae'
@@ -28,43 +29,42 @@ export default function Home(props) {
             .then(data => {
             setQuery('');
             setCurrentWeather(data)
-            setShowData(
-            <div>
-                <p>{data.name}</p>
-                <p>{Math.round(data.main.temp)}°C</p>
-                <p>{data.weather[0].main}</p>
-            </div>)
-            })
+           })
             
     }
     return (
-    <>
-      <div className='container'>
-        <h3>What's the weather in your town ??</h3>
-            <div className="input">
-                <TextField
-                    id="outlined-basic"
-                    label="city"
-                    variant="outlined" 
-                    value={query}
-                    required={true}
-                    onChange={(e) => setQuery(e.target.value)} 
-                    />
-                    <Button
-                    className="button"
-                    type="button"
-                    variant="outlined" 
-                    onClick={getWeather}>Submit
-                    </Button>
-            </div>
+    <div className={currentWeather && ((currentWeather.main.temp >=15) ? 'warm' : 'cold')}>
+        <div className="temp-container">
+        <div className='container'>
+            <p>What's the weather in your city ??</p>
+                <div className='inputs'>
+                    <TextField
+                        id="outlined-basic"
+                        label="city"
+                        variant="outlined" 
+                        value={query}
+                        required={true}
+                        onChange={(e) => setQuery(e.target.value)} 
+                        />
+                        <Button
+                        className="button"
+                        type="button"
+                        variant="outlined" 
+                        onClick={getWeather}>Submit
+                        </Button>
+                </div>
                 <div className="weather">
-                {showData}
-                <p>{/*data.weather[0].main*/}</p>
-            </div>
+                    {currentWeather && 
+                    <div>
+                    <p>{currentWeather.sys.country}</p>
+                    <p>{currentWeather.name}</p>
+                    <p>{currentWeather.weather.icon}</p>
+                    <p>{Math.round(currentWeather.main.temp)}°C</p>
+                    <p>{currentWeather.weather[0].main}</p>
+                </div>
+                }</div>
+            </div>     
         </div>
-       
-  
-           
-    </>
+    </div>
     )
 }
