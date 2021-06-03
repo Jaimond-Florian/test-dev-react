@@ -1,15 +1,9 @@
-import React, { useState, Link } from 'react'
+import React, { useState} from 'react'
 import './Home.css'
 import { TextField } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import axios from 'axios'
-require('dotenv').config()
-
-
-
-
-
-
+//require('dotenv').config();
 
 export default function Home() {
     
@@ -18,8 +12,8 @@ export default function Home() {
     const [currentWeather, setCurrentWeather] = useState(null)
     
     
-    //const ApiKey = process.env
-    //const ApiUrl = process.env
+    //const ApiKey = process.env.APIKEY
+    console.log(process.env.APIKEY)
     const ApiKey = '98b7465353d383f3d0f3bc4a284a48ae'
     const ApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${ApiKey}`
     
@@ -35,7 +29,7 @@ export default function Home() {
     return (
     <div className={currentWeather && ((currentWeather.main.temp >=15) ? 'warm' : 'cold')}>
         <div className="temp-container">
-        <div className='container'>
+           <div className='container'>
             <p>What's the weather in your city ??</p>
                 <div className='inputs'>
                     <TextField
@@ -55,15 +49,14 @@ export default function Home() {
                 </div>
                 <div className="weather">
                     {currentWeather && 
-                    <div>
-                    <p>{currentWeather.sys.country}</p>
-                    <p>{currentWeather.name}</p>
-                    <p>{currentWeather.weather.icon}</p>
-                    <p>{Math.round(currentWeather.main.temp)}°C</p>
-                    <p>{currentWeather.weather[0].main}</p>
-                </div>
-                }</div>
-            </div>     
+                     <div>
+                     <p>{currentWeather.sys.country}</p>
+                     <p>{currentWeather.name}</p>
+                     <p>{Math.round(currentWeather.main.temp)}°C</p>
+                     <p>{currentWeather.weather[0].main}</p>
+                     </div>
+                    }</div>
+                </div>     
         </div>
     </div>
     )
